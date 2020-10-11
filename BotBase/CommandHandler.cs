@@ -62,7 +62,6 @@ namespace BotBase
 
         private async Task HandleCommandAsync(SocketMessage m)
         {
-
             if (!(m is SocketUserMessage msg) || (msg.Author.IsBot && !await CanBotRunCommandsAsync(msg)))
             {
                 return;

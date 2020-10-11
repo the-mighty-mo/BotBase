@@ -20,5 +20,7 @@ namespace BotBase.Databases
 
             await Task.WhenAll(cmds);
         }
+
+        public async Task CloseAsync() => await cnDatabase.CloseAsync();
     }
 }

@@ -3,14 +3,21 @@ using BotBase.Databases;
 
 namespace BotBase
 {
-    public class DatabaseManager
+    public static class DatabaseManager
     {
-        public readonly Database database;
+        public static readonly Database database;
 
-        public async Task InitAsync()
+        public static async Task InitAsync()
         {
             await Task.WhenAll(
                 database.InitAsync()
+            );
+        }
+
+        public static async Task CloseAsync()
+        {
+            await Task.WhenAll(
+                database.CloseAsync()
             );
         }
     }

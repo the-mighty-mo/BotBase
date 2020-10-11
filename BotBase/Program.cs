@@ -14,7 +14,6 @@ namespace BotBase
         private static DiscordSocketClient client;
         private static CommandHandler handler;
 
-        public static readonly DatabaseManager databases = new DatabaseManager();
         public static readonly Random rng = new Random();
 
         public static async Task Main()
@@ -35,7 +34,7 @@ namespace BotBase
                 }
             }
 
-            Task initSqlite = databases.InitAsync().ContinueWith(x => Console.WriteLine($"{SecurityInfo.botName} has finished loading"));
+            Task initSqlite = DatabaseManager.InitAsync().ContinueWith(x => Console.WriteLine($"{SecurityInfo.botName} has finished loading"));
             Task initCommandHandler = SetupCommandHandlerAsync();
 
             await Task.WhenAll(
