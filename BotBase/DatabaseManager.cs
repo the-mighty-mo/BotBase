@@ -5,7 +5,7 @@ namespace BotBase
 {
     public static class DatabaseManager
     {
-        public static readonly Database database;
+        public static readonly MainDatabase database;
 
         public static async Task InitAsync()
         {

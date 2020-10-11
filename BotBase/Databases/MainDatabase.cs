@@ -4,9 +4,16 @@ using System.Threading.Tasks;
 
 namespace BotBase.Databases
 {
-    public class Database
+    public class MainDatabase
     {
         private readonly SqliteConnection cnDatabase = new SqliteConnection("Filename=Database.db");
+
+        public DatabaseTable Database;
+
+        public MainDatabase()
+        {
+            Database = new DatabaseTable(cnDatabase);
+        }
 
         public async Task InitAsync()
         {
@@ -22,5 +29,12 @@ namespace BotBase.Databases
         }
 
         public async Task CloseAsync() => await cnDatabase.CloseAsync();
+
+        public class DatabaseTable
+        {
+            private readonly SqliteConnection cnDatabase;
+
+            public DatabaseTable(SqliteConnection cnDatabase) => this.cnDatabase = cnDatabase;
+        }
     }
 }
