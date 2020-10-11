@@ -8,7 +8,7 @@ namespace BotBase.Databases
     {
         private readonly SqliteConnection connection = new SqliteConnection("Filename=Database.db");
 
-        public DatabaseTable Database;
+        public readonly DatabaseTable Database;
 
         public MainDatabase()
         {
