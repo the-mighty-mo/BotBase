@@ -7,8 +7,9 @@ namespace BotBase.Modules
 {
     public class Help : ModuleBase<SocketCommandContext>
     {
-        private const string help = "cmd\n" +
-            "  - [info about cmd]";
+        private const string help =
+            "ping\n" +
+            "  - Returns the bot's Server and API latencies";
 
         [Command("help")]
         public async Task HelpAsync()
