@@ -27,13 +27,12 @@ steps:
     version: '5.x'
     performMultiLevelLookup: true
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
+    command: 'build'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
+- task: DotNetCoreCLI@2
   inputs:
-    platform: '$(buildPlatform)'
+    command: 'test'
     configuration: '$(buildConfiguration)'
