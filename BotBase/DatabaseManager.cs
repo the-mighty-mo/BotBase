@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using BotBase.Databases;
+﻿using BotBase.Databases;
+using System.Threading.Tasks;
 
 namespace BotBase
 {
