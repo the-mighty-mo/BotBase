@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using BotBase.Databases.MainDatabaseTables;
+using Microsoft.Data.Sqlite;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,34 +8,28 @@ namespace BotBase.Databases
     public class MainDatabase
     {
         private readonly SqliteConnection connection = new SqliteConnection("Filename=Database.db");
+        private readonly Dictionary<System.Type, ITable> tables = new Dictionary<System.Type, ITable>();
 
-        public readonly DatabaseTable Database;
+        public DatabaseTable Database => tables[typeof(DatabaseTable)] as DatabaseTable;
 
         public MainDatabase()
         {
-            Database = new DatabaseTable(connection);
+            tables.Add(typeof(DatabaseTable), new DatabaseTable(connection));
         }
 
         public async Task InitAsync()
         {
             await connection.OpenAsync();
-
-            List<Task> cmds = new List<Task>();
-            using (SqliteCommand cmd = new SqliteCommand("CREATE TABLE IF NOT EXISTS Database (guild_id TEXT PRIMARY KEY, data TEXT NOT NULL);", connection))
+            IEnumerable<Task> GetTableInits()
             {
-                cmds.Add(cmd.ExecuteNonQueryAsync());
+                foreach (var table in tables.Values)
+                {
+                    yield return table.InitAsync();
+                }
             }
-
-            await Task.WhenAll(cmds);
+            await Task.WhenAll(GetTableInits());
         }
 
         public async Task CloseAsync() => await connection.CloseAsync();
-
-        public class DatabaseTable
-        {
-            private readonly SqliteConnection connection;
-
-            public DatabaseTable(SqliteConnection connection) => this.connection = connection;
-        }
     }
 }
