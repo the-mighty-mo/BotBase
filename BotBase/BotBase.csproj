@@ -9,7 +9,7 @@
     <Company>Josedolf Staller Enterprises</Company>
     <Product>Bot Base</Product>
     <Description>Base code for all Discord bots</Description>
-    <Copyright>Copyright © The Mighty Mi® 2020</Copyright>
+    <Copyright>Copyright © The Mighty Mi® 2021</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Discord.Net" Version="2.2.0" />
+    <PackageReference Include="Discord.Net" Version="2.3.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
   </ItemGroup>
