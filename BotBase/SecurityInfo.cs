@@ -9,6 +9,6 @@ namespace BotBase
         public const ulong botClient = 0; // Client ID
         public const string botName = "[bot name]";
         public const string botVersion = "1.0.0.0";
-        public static readonly Color botColor = new Color(217, 217, 217);
+        public static readonly Color botColor = new(217, 217, 217);
     }
 }

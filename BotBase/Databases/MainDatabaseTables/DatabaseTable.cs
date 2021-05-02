@@ -11,7 +11,7 @@ namespace BotBase.Databases.MainDatabaseTables
 
         public Task InitAsync()
         {
-            using SqliteCommand cmd = new SqliteCommand("CREATE TABLE IF NOT EXISTS Database (guild_id TEXT PRIMARY KEY, data TEXT NOT NULL);", connection);
+            using SqliteCommand cmd = new("CREATE TABLE IF NOT EXISTS Database (guild_id TEXT PRIMARY KEY, data TEXT NOT NULL);", connection);
             return cmd.ExecuteNonQueryAsync();
         }
     }

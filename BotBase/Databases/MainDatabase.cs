@@ -7,15 +7,13 @@ namespace BotBase.Databases
 {
     public class MainDatabase
     {
-        private readonly SqliteConnection connection = new SqliteConnection("Filename=Database.db");
-        private readonly Dictionary<System.Type, ITable> tables = new Dictionary<System.Type, ITable>();
+        private readonly SqliteConnection connection = new("Filename=Database.db");
+        private readonly Dictionary<System.Type, ITable> tables = new();
 
         public DatabaseTable Database => tables[typeof(DatabaseTable)] as DatabaseTable;
 
-        public MainDatabase()
-        {
+        public MainDatabase() =>
             tables.Add(typeof(DatabaseTable), new DatabaseTable(connection));
-        }
 
         public async Task InitAsync()
         {
