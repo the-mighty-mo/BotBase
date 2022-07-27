@@ -7,13 +7,13 @@ namespace BotBase
     {
         public static readonly MainDatabase database = new();
 
-        public static async Task InitAsync() =>
-            await Task.WhenAll(
+        public static Task InitAsync() =>
+            Task.WhenAll(
                 database.InitAsync()
             );
 
-        public static async Task CloseAsync() =>
-            await Task.WhenAll(
+        public static Task CloseAsync() =>
+            Task.WhenAll(
                 database.CloseAsync()
             );
     }
