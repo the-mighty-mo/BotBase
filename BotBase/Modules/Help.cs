@@ -16,18 +16,9 @@ namespace BotBase.Modules
         {
             EmbedBuilder embed = new EmbedBuilder()
                 .WithColor(SecurityInfo.botColor)
-                .WithTitle(SecurityInfo.botName)
-                .WithCurrentTimestamp();
+                .WithTitle(SecurityInfo.botName);
 
-            List<EmbedFieldBuilder> fields = new()
-            {
-                new EmbedFieldBuilder()
-                    .WithIsInline(false)
-                    .WithName("Prefix")
-                    .WithValue(CommandHandler.prefix +
-                        "\n**or**\n" +
-                        Context.Client.CurrentUser.Mention + "\n\u200b")
-            };
+            List<EmbedFieldBuilder> fields = new();
 
             EmbedFieldBuilder field = new EmbedFieldBuilder()
                 .WithIsInline(true)
@@ -36,7 +27,7 @@ namespace BotBase.Modules
             fields.Add(field);
             embed.WithFields(fields);
 
-            await Context.Interaction.RespondAsync(embed: embed.Build());
+            await Context.Interaction.RespondAsync(embed: embed.Build(), ephemeral: true);
         }
     }
 }
