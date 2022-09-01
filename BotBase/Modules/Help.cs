@@ -1,17 +1,17 @@
 ﻿using Discord;
-using Discord.Commands;
+using Discord.Interactions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BotBase.Modules
 {
-    public class Help : ModuleBase<SocketCommandContext>
+    public class Help : InteractionModuleBase<SocketInteractionContext>
     {
         private const string help =
             "ping\n" +
             "  - Returns the bot's Server and API latencies";
 
-        [Command("help")]
+        [SlashCommand("help", "List of commands")]
         public async Task HelpAsync()
         {
             EmbedBuilder embed = new EmbedBuilder()
@@ -36,7 +36,7 @@ namespace BotBase.Modules
             fields.Add(field);
             embed.WithFields(fields);
 
-            await Context.Channel.SendMessageAsync("", false, embed.Build());
+            await Context.Interaction.RespondAsync(embed: embed.Build());
         }
     }
 }
