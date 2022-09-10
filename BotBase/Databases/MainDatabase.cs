@@ -10,7 +10,7 @@ namespace BotBase.Databases
         private readonly SqliteConnection connection = new("Filename=Database.db");
         private readonly Dictionary<System.Type, ITable> tables = new();
 
-        public DatabaseTable Database => tables[typeof(DatabaseTable)] as DatabaseTable;
+        public DatabaseTable Database => (tables[typeof(DatabaseTable)] as DatabaseTable)!;
 
         public MainDatabase() =>
             tables.Add(typeof(DatabaseTable), new DatabaseTable(connection));
