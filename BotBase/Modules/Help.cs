@@ -12,7 +12,7 @@ namespace BotBase.Modules
             "  - Returns the bot's Server and API latencies";
 
         [SlashCommand("help", "List of commands")]
-        public async Task HelpAsync()
+        public Task HelpAsync()
         {
             EmbedBuilder embed = new EmbedBuilder()
                 .WithColor(SecurityInfo.botColor)
@@ -27,7 +27,7 @@ namespace BotBase.Modules
             fields.Add(field);
             embed.WithFields(fields);
 
-            await Context.Interaction.RespondAsync(embed: embed.Build(), ephemeral: true);
+            return Context.Interaction.RespondAsync(embed: embed.Build(), ephemeral: true);
         }
     }
 }
